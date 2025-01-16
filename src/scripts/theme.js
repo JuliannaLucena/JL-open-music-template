@@ -1,25 +1,25 @@
-const buttonTheme = document.querySelector(".header__theme-button");
-const html = document.querySelector("html");
-const img = document.querySelector(".header__theme-button > img");
+/* Desenvolva sua lógica aqui ... */
 
-const localStorageKey = "@openMusic";
+const buttonDark = document.querySelector(".button-Dark")
+const html = document.querySelector("html")
+const img = document.querySelector(".theme__img")
 
-let darkMode = JSON.parse(localStorage.getItem(localStorageKey)) || false;
-
-function themeChanging() {
-    darkMode = !darkMode;
-    html.classList.toggle("darkmode", darkMode);
-    localStorage.setItem(localStorageKey, JSON.stringify(darkMode));
-    img.src = darkMode ? './src/assets/icons/sun-icon.svg' : './src/assets/icons/moon.svg';
-    
+const darkMode = localStorage.getItem("@openMusic:darkMode")
+if (darkMode) {
+    html.classList.add("dark-mode")
+    img.src = "https://media.graphassets.com/BgTFGDVvRdymZmzAgg9t"
 }
 
-buttonTheme.addEventListener("click", themeChanging);
+buttonDark.addEventListener('click', () => {
+    html.classList.toggle("dark-mode")
+    if (html.classList.contains("dark-mode")) {
+        img.src = "https://media.graphassets.com/BgTFGDVvRdymZmzAgg9t"
+        localStorage.setItem("@openMusic:darkMode", true)
+    } else {
+        img.src = "https://media.graphassets.com/AWCWFFLPSEWh4lhYs68c"
+        localStorage.removeItem("@openMusic:darkMode")
+    }
+})
 
-export default function themeAnalysis() {
-    darkMode = JSON.parse(localStorage.getItem(localStorageKey)) || false;
 
-    html.classList.toggle("darkmode", darkMode);
-    img.src = darkMode ? './src/assets/icons/sun-icon.svg' : './src/assets/icons/moon.svg';
 
-}
